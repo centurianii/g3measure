@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>html stub for g3.measure tests</title>
+   <meta name="description" content="html stub for testing g3.Tips class">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="author" content="centurianii at github">
+<style id="layout" media="all">
+html {
+   background: #ffffff;
+   font-size: 62.5%;
+   -webkit-overflow-scrolling: touch;
+   -webkit-tap-highlight-color: #f3f5f6;
+   -webkit-text-size-adjust: 100%;
+   -ms-text-size-adjust: 100%;
+   background-position: left top;
+   background-repeat: repeat-y repeat-x;
+   background-origin: border-box;
+   background-attachment: scroll;
+   background-image: url(assets/100px.png);
+}
+
+body {
+  margin: 10px;
+  border: 5px dotted;
+  padding: 10px;
+  width: 100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
+  color: #000000;
+}
+
+/* 
+ * Container
+ * ----------
+ */
+.container_12 {
+   margin-left: auto;
+   margin-right: auto;
+   width: 92%;
+   margin-left: 4%;
+   margin-right: 4%;
+}
+
+/* 
+ * Grids general
+ * -------------
+ */
+.grid, .grid_12 {
+   vertical-align: baseline;
+   background: transparent;
+   margin: 0;
+   border: 0;
+   display: inline;
+   float: left;
+}
+
+/*
+ * =============================================
+ * One column: any width
+ * =============================================
+ */
+.grid, .grid_12 {
+   width: 100%;
+}
+
+/*
+ * Cell
+ * ----
+ */
+.cell {
+   display: block;
+   position: relative;
+   width: auto;
+   border: 0;
+   padding: 0;
+   margin: 10px 5px;
+   background: #e6e6e6;
+   border: 1px dashed orange;
+}
+
+/*
+ * Clear Container
+ * ---------------
+ */
+.container_12:before,
+.container_12:after {
+   content: " ";
+   display: block;
+   overflow: hidden;
+   visibility: hidden;
+   font-size: 0;
+   line-height: 0;
+   width: 0;
+   height: 0;
+}
+
+.container_12:after {
+   clear: both;
+}
+
+/*
+ * Clear Floated Elements
+ * ----------------------
+ */
+.clear {
+   display: block;
+   overflow: hidden;
+   visibility: hidden;
+   width: 0;
+   height: 0;
+}
+
+/*
+ * =============================================
+ * One column: width &lt; 480px
+ * =============================================
+ */
+@media only screen and (max-width: 479px) {
+   /*defined as default*/
+}
+
+/*
+ * =============================================
+ * Two columns: 480px &lt;= width &lt; 768px
+ * =============================================
+ */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+   .grid {
+      width: 50%;
+   }
+   /*
+    * Clear row=1, col=2
+    * ------------------
+    */
+   .q_480_767_clear_12 {
+      clear: both;
+   }
+}
+
+/*
+ * =============================================
+ * Three columns: 768px &lt;= width
+ * =============================================
+ */
+@media only screen and (min-width: 768px) {
+   .grid {
+      width: 33.333%;
+   }
+   /*
+    * Clear row=1, col=3
+    * ------------------
+    */
+   .q_768_clear_13 {
+      clear: both;
+   }
+}
+
+/*
+ * ===================
+ * Define Print Values
+ * ===================
+ */
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+@media print {
+   body {
+      font-size: 8px;
+   }
+   .grid {
+      width: 33.333%;
+   }
+   /*
+    * Clear row=1, col=3
+    * ------------------
+    */
+   .q_768_clear_13 {
+      clear: both;
+   }
+}
+
+#relative {
+   position: relative;
+   left: -50px;
+   top: 50px;
+   width: 200px;
+   height: 300px;
+   border: 2px solid green;
+}
+#absolute {
+   position: absolute;
+   overflow: auto;
+   left: 150px;
+   top: 100px;
+   width: 100px;
+   height: 100px;
+   border: 2px solid red;
+}
+#relative, #absolute {
+   background-position: left top;
+   background-repeat: repeat;
+   background-origin: border-box;
+   background-attachment: scroll;
+   background-image: url(assets/100px.png);
+   margin: 4px;
+   padding: 4px;
+}
+</style>
+</head>
+<body onload="init()">
+   <div class="container_12">
+      <div class="grid_12">
+      
+<div class="grid">
+<div class="cell">
+<h2>Column 1</h2>
+<p><b>Ruler:</b> <img src="assets/100px.png" /></p>
+<p>Nam placerat nibh et diam ornare, in dignissim tortor laoreet. Nunc blandit tortor in justo sollicitudin, in imperdiet mauris cursus. Phasellus sit amet enim volutpat, eleifend lorem vel, imperdiet urna. Sed enim tortor, sagittis a quam in, dapibus convallis tellus. Nulla facilisi. Vestibulum metus leo, tempor eget arcu nec, tempor aliquam leo! Nam egestas a ipsum ut fringilla. Proin vitae neque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate semper lacus, in ultrices ligula bibendum pharetra? Nulla facilisi. Proin a ultricies purus, id facilisis leo.</p>
+<p>Maecenas porttitor venenatis lorem tempor condimentum. Phasellus gravida sapien eu elit sollicitudin imperdiet sed nec magna. Praesent blandit sapien eget ullamcorper tincidunt. Donec et velit egestas, aliquam magna at, interdum massa. Nullam lobortis in mi non accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin vehicula mauris justo; non interdum velit auctor vel. Etiam rhoncus magna eu dui bibendum, nec dapibus diam rhoncus. Pellentesque aliquet ante eget nisl venenatis lacinia. Nunc at est rutrum; posuere ante id; faucibus odio! In tincidunt laoreet hendrerit. Ut et arcu sed urna aliquam volutpat. Ut lacinia ac eros sit amet egestas. Donec diam diam, tincidunt non aliquam id, hendrerit sed sapien. Integer ante magna, gravida id mi sed, iaculis suscipit dui.</p>
+</div>
+</div>
+
+<div class="grid">
+<div class="cell">
+<h2>Column 2</h2>
+<p>Three columns, three cells with orange border: 
+<pre>
+.cell {
+   display: block;
+   position: relative;
+   width: auto;
+   border: 0;
+   padding: 0;
+   margin: 10px 5px;
+   background: #e6e6e6;
+   border: 1px dashed orange;
+}
+</pre>
+</p>
+<div id="relative">position relative: 
+<pre>
+#relative {
+   position: relative;
+   left: -50px;
+   top: 50px;
+   width: 200px;
+   height: 300px;
+   border: 2px solid green;
+   margin: 4px;
+   padding: 4px;
+}
+</pre>
+<div id="absolute">position absolute: 
+<pre>
+#absolute {
+   position: absolute;
+   overflow: auto;
+   left: 150px;
+   top: 100px;
+   width: 100px;
+   height: 100px;
+   border: 2px solid red;
+   margin: 4px;
+   padding: 4px;
+}
+</pre>
+</div></div>
+</div>
+</div>
+<div class="clear q_480_767_clear_12"></div>
+
+<div class="grid">
+<div class="cell">
+<h2>Column 3</h2>
+<p>In nec tincidunt enim, nec ornare metus. Donec elementum vitae lectus quis egestas. Donec magna ligula, imperdiet eget elit et, ornare eleifend massa. Donec fermentum mauris sit amet justo commodo pretium. Duis tempus sit amet nulla et lacinia. Aliquam erat volutpat. Fusce sagittis tortor quam, vel ultricies sapien bibendum ut. Suspendisse tristique lacus eget scelerisque dignissim. Nulla posuere lobortis blandit. Integer adipiscing, nulla eget hendrerit sagittis, augue urna rutrum purus; ac ullamcorper libero velit id lectus. Suspendisse ac interdum elit, a pellentesque lectus. Nam vel imperdiet nibh. Praesent et dolor sit amet purus luctus imperdiet! Maecenas quis malesuada ante. In viverra arcu sit amet mi varius, vel fermentum massa bibendum.</p>
+</div>
+</div>
+<div class="clear q_768_clear_13"></div>
+
+      </div>
+   </div>
+<script>
+function init(){
+   //are we in a frame?
+   if(window.parent && (window.parent !== window) && window.parent.g3)
+      window.parent.g3.evaluator.getInstance().calledFromFrame();
+}
+</script>
+</body>
+</html>
