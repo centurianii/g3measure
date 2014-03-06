@@ -33,9 +33,13 @@ Objects
 <h3>Properties</h3>
 <ol>
 <li><code>width</code></li>
-<li><code>width</code></li>
-<li><code>width</code></li>
-<li><code>width</code></li>
+<li><code>height</code></li>
+<li><code>left</code></li>
+<li><code>top</code></li>
+<li><code>viewLeft</code></li>
+<li><code>viewTop</code></li>
+<li><code>viewBottom</code></li>
+<li><code>viewRight</code></li>
 </ol>
 
 Evaluator test page
