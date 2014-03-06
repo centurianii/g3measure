@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+<head>
+   <meta charset=utf-8>
+   <title>Evaluator: Test g3.measure object</title>
+   <!-- my source files (g3), necessary libraries (jquery) and my tests folder (tests):
+      client
+        :
+        |-jquery
+        :  :
+        |-g3
+        :  |- &lt;g3measure.js>
+        :  :
+        |-tests
+        |  |-jasmine-standalone-2.0.0
+        |  |  |-lib
+        |  |  |-spec
+        :  :  :
+        |  |-g3
+        |  :  |- &lt;g3measure-SpecRunner.html>
+        |  :  |- &lt;g3measure-Spec.js>
+        |  :  |- &lt;g3measure-SpecHelper.js>
+        |  :  |- g3evaluator.css
+        |  :  |- g3evaluator.js
+        |  :  |- g3evaluator.html (rename this file to test-g3MyClass.html)
+        |  :  |- &lt;test-g3measure.html>
+        :  :  :
+   -->
+   <link rel="stylesheet" type="text/css" href="g3evaluator.css">
+</head>
+<body>
+<div id="title">
+   <h1 contenteditable="false">Evaluator: Test g3.measure object<br></h1><span class="">[edit]</span>
+</div><div id="stub" class=""></div><form id="loadFrame">
+<fieldset>
+   <legend class="hover"><b>Manage stub/frame</b></legend>
+   <div style="display: none;" class="hide">
+   <label class="label" for="frameSrc">Frame source:</label><input id="frameSrc" size="30" type="text"><br>
+   <input value="Load file in frame" type="button"><input value="Remove frame" type="button"><br>
+   <input value="Clone frame to stub-HEAD" type="button"><input value="Remove cloned" type="button">
+   </div>
+</fieldset>
+</form><form id="bodyHtml">
+<fieldset>
+   <legend class="hover"><b>Load body html (no &lt;script&gt;)</b></legend>
+   <div class="hide">
+   <textarea rows="5" wrap="virtual"></textarea><br>
+   <input value="Load" type="button"><input value="Clear" type="button"><br>
+   <label class="label" for="exclName">Exclude ids:</label><input id="exclName" size="30" type="text">
+   seperate by space or comma or semicolon or vertical bar: [ ,;|]
+   </div>
+</fieldset>
+</form><form id="addRemoveLib">
+<fieldset>
+   <legend class="hover">Add/Remove library</legend>
+   <div style="display: none;" class="hide">
+   <label class="label" for="libName">Script id:</label><input id="libName" size="30" type="text"><br>
+   <label class="label" for="libPath">Path:</label><input id="libPath" size="30" type="text"><br>
+   <input value="Add" type="button"><input value="Remove" type="button">
+   </div>
+</fieldset>
+</form>
+<form id="libraries">
+<fieldset>
+   <legend>Load library</legend>
+<label class="label" for="dGPer">g3measure</label><input id="dGPer" value="g3measure.js" type="checkbox"><br></fieldset>
+</form>
+<p><span><label class="label" for="boardHeights">Equal board heights:</label>
+<input id="boardHeights" type="checkbox"></span></p>
+<div id="boardWrapper">
+<form class="" id="blackboard">
+<fieldset>
+   <legend><b>Blackboard</b></legend>
+   <label class="label" for="title">Tab title:</label><input id="title" size="40" type="text"><br>
+   <textarea rows="10" wrap="virtual"></textarea><br>
+   <input value="Execute!" type="button"><input disabled="" value="Save" type="button"><input value="Save to a new tab" type="button"><input value="Clear" type="button"><br>
+</fieldset>
+</form>
+<form class="" id="console">
+<fieldset>
+   <legend><b>Console</b></legend>
+   <div class="data"><pre></pre></div>
+   <input value="Clear" type="button">
+</fieldset>
+</form>
+</div><div class="clear clearBoardWrapper"></div><form id="addRemovePanel">
+<fieldset>
+   <legend class="hover">Add/Remove panel</legend>
+   <div style="display: none;" class="hide">
+   <label class="label" for="panelTitle">Panel title:</label><input id="panelTitle" size="30" type="text"><br>
+   <input value="Add" type="button"><input value="Remove" type="button">
+   </div>
+</fieldset>
+</form><hr><p><span style="padding: 0.4em 0.8em; color: #003380; background-color: #66a3ff;">Load any tab to blackboard</span><span><label class="label" for="panelHeights">Equal panel heights:</label><input id="panelHeights" type="checkbox"></span></p><div id="tabbedDataWrapper">
+<div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title enabled">g3measure</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window</div><div class="close">X</div></div><div class="tabBar"><div class="tab">window.screen</div><div class="close">X</div></div><div class="tabBar"><div class="tab">viewport</div><div class="close">X</div></div><div class="tabBar"><div class="tab">relative element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">absolute element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">chain methods</div><div class="close">X</div></div><div class="tabBar"><div class="tab">arbitrary order in methods</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//window sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+console.log('-------width-------');
+console.log('js outerWidth='+framewin.outerWidth+', dropped (viewport? document?)');
+console.log('js innerWidth='+framewin.innerWidth+', dropped (iframe)');
+console.log('jquery width='+$(framewin).width()+', accepted as viewport');
+
+console.log('-------height-------');
+console.log('js outerHeight='+framewin.outerHeight+', dropped (viewport? document?)');
+console.log('js innerHeight='+framewin.innerHeight+', dropped (viewport? document?)');
+console.log('jquery height='+$(framewin).height()+', accepted as viewport');</pre></div><div class="data"><pre>//window sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow.screen;
+
+console.log('-------width-------');
+console.log('js width='+framewin.width);
+console.log('js avaiWidth='+framewin.availWidth);
+
+console.log('-------height-------');
+console.log('js height='+framewin.height);
+console.log('js availHeight='+framewin.availHeight);
+
+console.log('-------g3.measure-------');
+console.log(g3.measure('screen', framewin));</pre></div><div class="data"><pre>//viewport from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+console.log('-------width-------');
+console.log('jquery window.width='+$(framewin).width());
+
+console.log('-------height-------');
+console.log('jquery window.height='+$(framewin).height());
+
+console.log('-------g3.measure-------');
+console.log(g3.measure('viewport', framewin));
+</pre></div><div class="data"><pre>//element sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#relative', framewin.document).get(0);
+
+console.log('-------width-------');
+console.log('js offsetWidth='+el.offsetWidth+' (border+padding+content)');
+console.log('js clientWidth='+el.clientWidth+' (padding+content)');
+console.log('jquery outerWidth()='+$(el).outerWidth()+' (border+padding+content)');
+console.log('jquery innerWidth()='+$(el).innerWidth()+' (padding+content)');
+console.log('jquery width()='+$(el).width()+', accepted (content)');
+console.log('jquery css()='+$(el).css('width')+', accepted (content)');
+try{
+console.log('width getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('width')+' (content)');
+}catch(e){
+console.log('width currentStyle.getAttribute()='+el.currentStyle.getAttribute('width')+' (content)');
+}
+
+console.log('-------height-------');
+console.log('js offsetHeight='+el.offsetHeight+' (border+padding+content)');
+console.log('js clientHeight='+el.clientHeight+' (padding+content)');
+console.log('jquery outerHeight()='+$(el).outerHeight()+' (border+padding+content)');
+console.log('jquery innerHeight()='+$(el).innerHeight()+' (padding+content)');
+console.log('jquery height()='+$(el).height()+' (content)');
+console.log('jquery css()='+$(el).css('height')+' (content)');
+try{
+console.log('height getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('height')+' (content)');
+}catch(e){
+console.log('height currentStyle.getAttribute()='+el.currentStyle.getAttribute('height')+' (content)');
+}
+
+console.log('-------g3.measure-------');
+var measure = g3.measure(el, framewin);
+console.log(measure);
+
+console.log('--size--');
+console.log(measure.size());
+
+console.log('--position--');
+console.log(measure.position());
+
+console.log('--in viewport--');
+console.log(measure.visible());
+
+console.log('--deactivate getBoundingClientRect()--');
+var rect = el.getBoundingClientRect;
+el.getBoundingClientRect = null;
+
+console.log('--position--');
+console.log(measure.position());
+
+console.log('--in viewport--');
+console.log(measure.visible());
+
+//restore
+el.getBoundingClientRect = rect;
+</pre></div><div class="data"><pre>//element sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#absolute', framewin.document).get(0);
+
+console.log('-------width-------');
+console.log('js offsetWidth='+el.offsetWidth+' (border+padding+content)');
+console.log('js clientWidth='+el.clientWidth+' (padding+content)');
+console.log('jquery outerWidth()='+$(el).outerWidth()+' (border+padding+content)');
+console.log('jquery innerWidth()='+$(el).innerWidth()+' (padding+content)');
+console.log('jquery width()='+$(el).width()+', accepted (content)');
+console.log('jquery css()='+$(el).css('width')+', accepted (content)');
+try{
+console.log('width getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('width')+' (content)');
+}catch(e){
+console.log('width currentStyle.getAttribute()='+el.currentStyle.getAttribute('width')+' (content)');
+}
+
+console.log('-------height-------');
+console.log('js offsetHeight='+el.offsetHeight+' (border+padding+content)');
+console.log('js clientHeight='+el.clientHeight+' (padding+content)');
+console.log('jquery outerHeight()='+$(el).outerHeight()+' (border+padding+content)');
+console.log('jquery innerHeight()='+$(el).innerHeight()+' (padding+content)');
+console.log('jquery height()='+$(el).height()+' (content)');
+console.log('jquery css()='+$(el).css('height')+' (content)');
+try{
+console.log('height getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('height')+' (content)');
+}catch(e){
+console.log('height currentStyle.getAttribute()='+el.currentStyle.getAttribute('height')+' (content)');
+}
+
+console.log('-------g3.measure-------');
+var measure = g3.measure(el, framewin);
+console.log(measure);
+
+console.log('--size--');
+console.log(measure.size());
+
+console.log('--position--');
+console.log(measure.position());
+
+console.log('--in viewport--');
+console.log(measure.visible());
+
+console.log('--deactivate getBoundingClientRect()--');
+var rect = el.getBoundingClientRect;
+el.getBoundingClientRect = null;
+
+console.log('--position--');
+console.log(measure.position());
+
+console.log('--in viewport--');
+console.log(measure.visible());
+
+//restore
+el.getBoundingClientRect = rect;
+</pre></div><div class="data"><pre>//element sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#absolute', framewin.document).get(0);
+
+console.log('-------g3.measure-------');
+var measure = g3.measure(el, framewin).size().position();
+console.log(measure);
+
+console.log('--in viewport--');
+console.log(measure.visible());
+</pre></div><div class="data"><pre>//element sizes from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#absolute', framewin.document).get(0);
+
+console.log('-------g3.measure-------');
+var measure = g3.measure(el, framewin);
+console.log(measure);
+
+console.log('--position--');
+console.log(measure.position());
+
+console.log('--size--');
+console.log(measure.size());
+
+console.log('--in viewport--');
+console.log(measure.visible());
+</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">width-height-left-top</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window, body, document.documentElement</div><div class="close">X</div></div><div class="tabBar"><div class="tab">element</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//width-height-left-top of
+//window, body, document.documentElement
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+console.log('-------width-------');
+console.log('window.outerWidth='+framewin.outerWidth);console.log('window.innerWidth='+framewin.innerWidth);
+console.log('body offsetWidth='+framewin.document.body.offsetWidth);
+console.log('body scrollWidth='+framewin.document.body.scrollWidth);
+console.log('body clientWidth='+framewin.document.body.clientWidth);
+console.log('document.documentElement offsetWidth='+framewin.document.documentElement.offsetWidth);
+console.log('document.documentElement scrollWidth='+framewin.document.documentElement.scrollWidth);
+console.log('document.documentElement clientWidth='+framewin.document.documentElement.clientWidth);
+
+console.log('-------height-------');
+console.log('window.outerHeight='+framewin.outerHeight);
+console.log('window.innerHeight='+framewin.innerHeight);
+console.log('body offsetHeight='+framewin.document.body.offsetHeight);
+console.log('body scrollHeight='+framewin.document.body.scrollHeight);
+console.log('body clientHeight='+framewin.document.body.clientHeight);
+console.log('document.documentElement offsetHeight='+framewin.document.documentElement.offsetHeight);
+console.log('document.documentElement scrollHeight='+framewin.document.documentElement.scrollHeight);
+console.log('document.documentElement clientHeight='+framewin.document.documentElement.clientHeight);
+
+console.log('-------left-------');
+console.log('body offsetLeft='+framewin.document.body.offsetLeft);
+console.log('body scrollLeft='+framewin.document.body.scrollLeft);
+console.log('body clientLeft='+framewin.document.body.clientLeft);
+console.log('document.documentElement offsetLeft='+framewin.document.documentElement.offsetLeft);
+console.log('document.documentElement scrollLeft='+framewin.document.documentElement.scrollLeft);
+console.log('document.documentElement clientLeft='+framewin.document.documentElement.clientLeft);
+
+console.log('-------top-------');
+console.log('body offsetTop='+framewin.document.body.offsetTop);
+console.log('body scrollTop='+framewin.document.body.scrollTop);
+console.log('body clientTop='+framewin.document.body.clientTop);
+console.log('document.documentElement offsetTop='+framewin.document.documentElement.offsetTop);
+console.log('document.documentElement scrollTop='+framewin.document.documentElement.scrollTop);
+console.log('document.documentElement clientTop='+framewin.document.documentElement.clientTop);
+
+</pre></div><div class="data"><pre>//width-height-left-top of element
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#relative', framewin.document).get(0);
+//console.log(el);
+
+console.log('-------width-------');
+console.log('offsetWidth='+el.offsetWidth);
+console.log('scrollWidth='+el.scrollWidth);console.log('clientWidth='+el.clientWidth);
+
+console.log('-------height-------');
+console.log('offsetHeight='+el.offsetHeight);
+console.log('scrollHeight='+el.scrollHeight);console.log('clientHeight='+el.clientHeight);
+
+console.log('-------left-------');
+console.log('offsetLeft='+el.offsetLeft);
+console.log('scrollLeft='+el.scrollLeft);
+console.log('scrollLeftMax='+el.scrollLeftMax);console.log('clientLeft='+el.clientLeft);
+
+console.log('-------top-------');
+console.log('offsetTop='+el.offsetTop);
+console.log('scrollTop='+el.scrollTop);
+console.log('scrollTopMax='+el.scrollTopMax);console.log('clientTop='+el.clientTop);
+</pre></div></div></div></div></div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script> window.jQuery || document.write('<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.0.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../jquery/jquery-1.10.2.js"><\/script>')</script>
+<script src="g3debug.js"></script>
+<script src="g3evaluator.js"></script>
+<script>
+$(function(){
+   g3.evaluator.getInstance();
+});
+</script>
+</body>
+</html>
