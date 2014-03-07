@@ -32,14 +32,29 @@ Objects
 </ol>
 <h3>Properties</h3>
 <ol>
+<li><ol>on construction:
+<li><code>outerWidth</code></li>
+<li><code>innerWidth</code></li>
+<li><code>outerHeight</code></li>
+<li><code>innerHeight</code></li>
+</ol>
+</li>
+<li>
+<ol>on method <code>this.size()</code>:
 <li><code>width</code></li>
 <li><code>height</code></li>
+</ol>
+</li>
+<li>
+<ol>on method <code>this.position()</code>:
 <li><code>left</code></li>
 <li><code>top</code></li>
 <li><code>viewLeft</code></li>
 <li><code>viewTop</code></li>
 <li><code>viewBottom</code></li>
 <li><code>viewRight</code></li>
+</ol>
+</li>
 </ol>
 
 Evaluator test page
