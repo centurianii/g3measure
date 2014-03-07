@@ -64,7 +64,7 @@
    <legend>Load library</legend>
 <label class="label" for="dGPer">g3measure</label><input id="dGPer" value="../../g3/g3measure.js" type="checkbox"><br></fieldset>
 </form><p><span><label class="label" for="boardHeights">Equal board heights:</label><input id="boardHeights" type="checkbox"></span></p><div id="boardWrapper">
-<form class="" id="blackboard">
+<form class="height" id="blackboard">
 <fieldset>
    <legend><b>Blackboard</b></legend>
    <label class="label" for="title">Tab title:</label><input id="title" size="40" type="text"><br>
@@ -72,7 +72,7 @@
    <input value="Execute!" type="button"><input disabled="" value="Save" type="button"><input value="Save to a new tab" type="button"><input value="Clear" type="button"><br>
 </fieldset>
 </form>
-<form class="" id="console">
+<form class="height" id="console">
 <fieldset>
    <legend><b>Console</b></legend>
    <div class="data"><pre></pre></div>
@@ -139,8 +139,10 @@ console.log('js offsetWidth='+el.offsetWidth+' (border+padding+content)');
 console.log('js clientWidth='+el.clientWidth+' (padding+content)');
 console.log('jquery outerWidth()='+$(el).outerWidth()+' (border+padding+content)');
 console.log('jquery innerWidth()='+$(el).innerWidth()+' (padding+content)');
-console.log('jquery width()='+$(el).width()+', accepted (content)');
-console.log('jquery css()='+$(el).css('width')+', accepted (content)');
+console.log('jquery width()='+$(el).width()+' (content)');
+console.log('jquery css()='+$(el).css('width')+' (content)');
+console.log('jquery offset()=');
+console.log($(el).offset());
 try{
 console.log('width getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('width')+' (content)');
 }catch(e){
@@ -196,8 +198,10 @@ console.log('js offsetWidth='+el.offsetWidth+' (border+padding+content)');
 console.log('js clientWidth='+el.clientWidth+' (padding+content)');
 console.log('jquery outerWidth()='+$(el).outerWidth()+' (border+padding+content)');
 console.log('jquery innerWidth()='+$(el).innerWidth()+' (padding+content)');
-console.log('jquery width()='+$(el).width()+', accepted (content)');
-console.log('jquery css()='+$(el).css('width')+', accepted (content)');
+console.log('jquery width()='+$(el).width()+' (content)');
+console.log('jquery css()='+$(el).css('width')+' (content)');
+console.log('jquery offset()= (document)');
+console.log($(el).offset());
 try{
 console.log('width getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('width')+' (content)');
 }catch(e){
