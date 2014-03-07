@@ -24,22 +24,37 @@ Objects
 <h3>Methods</h3>
 <ol>
 <li>Get the element's size: <code>g3.measure(el).size()</code>.
-<p>Sets properties: <code>width</code> and <code>height</code>.</p></li>
+<p>Sets properties: <code>width</code> and <code>height</code>. Chainable.</p></li>
 <li>Get the element's position on viewport and document: <code>g3.measure(el).position()</code>.
-<p>Sets properties: <code>left</code>, <code>top</code>, <code>viewLeft</code>, <code>viewTop</code>, <code>viewBottom</code>, <code>viewRight</code>.</p></li>
+<p>Sets properties: <code>left</code>, <code>top</code>, <code>viewLeft</code>, <code>viewTop</code>, <code>viewBottom</code>, <code>viewRight</code>. Chainable.</p></li>
 <li>Get the element's viewport collision or visibility: <code>g3.measure(el).visible()</code>.
-<p>Returns a string build by the concatenation of words "top", "right", "bottom" and "left" or false when the element is not visible.</p></li>
+<p>Returns a string build by the concatenation of words "top", "right", "bottom" and "left" or false when the element is not visible. Breaks the chain and does not return this object.</p></li>
 </ol>
 <h3>Properties</h3>
 <ol>
+<li><ol>on construction:
+<li><code>outerWidth</code></li>
+<li><code>innerWidth</code></li>
+<li><code>outerHeight</code></li>
+<li><code>innerHeight</code></li>
+</ol>
+</li>
+<li>
+<ol>on method <code>this.size()</code>:
 <li><code>width</code></li>
 <li><code>height</code></li>
+</ol>
+</li>
+<li>
+<ol>on method <code>this.position()</code>:
 <li><code>left</code></li>
 <li><code>top</code></li>
 <li><code>viewLeft</code></li>
 <li><code>viewTop</code></li>
 <li><code>viewBottom</code></li>
 <li><code>viewRight</code></li>
+</ol>
+</li>
 </ol>
 
 Evaluator test page
