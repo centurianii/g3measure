@@ -24,7 +24,7 @@ html {
 
 body {
   margin: 10px;
-  border: 5px dotted;
+  border: 5px dashed;
   padding: 10px;
   width: 100%;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -193,7 +193,7 @@ body {
    top: 50px;
    width: 200px;
    height: 300px;
-   border: 2px solid green;
+   border: 10px solid green;
 }
 #absolute {
    position: absolute;
@@ -202,16 +202,16 @@ body {
    top: 100px;
    width: 100px;
    height: 100px;
-   border: 2px solid red;
+   border: 10px solid red;
 }
 #relative, #absolute {
    background-position: left top;
    background-repeat: repeat;
    background-origin: border-box;
-   background-attachment: scroll;
+   background-attachment: local;
    background-image: url(assets/100px.gif);
-   margin: 4px;
-   padding: 4px;
+   margin: 10px;
+   padding: 10px;
 }
 </style>
 </head>
@@ -222,7 +222,16 @@ body {
 <div class="grid">
 <div class="cell">
 <h2>Column 1</h2>
-<p>Nam placerat nibh et diam ornare, in dignissim tortor laoreet. Nunc blandit tortor in justo sollicitudin, in imperdiet mauris cursus. Phasellus sit amet enim volutpat, eleifend lorem vel, imperdiet urna. Sed enim tortor, sagittis a quam in, dapibus convallis tellus. Nulla facilisi. Vestibulum metus leo, tempor eget arcu nec, tempor aliquam leo! Nam egestas a ipsum ut fringilla. Proin vitae neque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate semper lacus, in ultrices ligula bibendum pharetra? Nulla facilisi. Proin a ultricies purus, id facilisis leo.</p>
+<p>
+<pre>
+body {
+  margin: 10px;
+  border: 5px dashed;
+  padding: 10px;
+  width: 100%;
+}
+</pre>
+Nam placerat nibh et diam ornare, in dignissim tortor laoreet. Nunc blandit tortor in justo sollicitudin, in imperdiet mauris cursus. Phasellus sit amet enim volutpat, eleifend lorem vel, imperdiet urna. Sed enim tortor, sagittis a quam in, dapibus convallis tellus. Nulla facilisi. Vestibulum metus leo, tempor eget arcu nec, tempor aliquam leo! Nam egestas a ipsum ut fringilla. Proin vitae neque lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vulputate semper lacus, in ultrices ligula bibendum pharetra? Nulla facilisi. Proin a ultricies purus, id facilisis leo.</p>
 <p>Maecenas porttitor venenatis lorem tempor condimentum. Phasellus gravida sapien eu elit sollicitudin imperdiet sed nec magna. Praesent blandit sapien eget ullamcorper tincidunt. Donec et velit egestas, aliquam magna at, interdum massa. Nullam lobortis in mi non accumsan. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin vehicula mauris justo; non interdum velit auctor vel. Etiam rhoncus magna eu dui bibendum, nec dapibus diam rhoncus. Pellentesque aliquet ante eget nisl venenatis lacinia. Nunc at est rutrum; posuere ante id; faucibus odio! In tincidunt laoreet hendrerit. Ut et arcu sed urna aliquam volutpat. Ut lacinia ac eros sit amet egestas. Donec diam diam, tincidunt non aliquam id, hendrerit sed sapien. Integer ante magna, gravida id mi sed, iaculis suscipit dui.</p>
 </div>
 </div>
@@ -252,9 +261,9 @@ body {
    top: 50px;
    width: 200px;
    height: 300px;
-   border: 2px solid green;
-   margin: 4px;
-   padding: 4px;
+   border: 10px solid green;
+   margin: 10px;
+   padding: 10px;
 }
 </pre>
 <div id="absolute">position absolute: 
@@ -266,9 +275,9 @@ body {
    top: 100px;
    width: 100px;
    height: 100px;
-   border: 2px solid red;
-   margin: 4px;
-   padding: 4px;
+   border: 10px solid red;
+   margin: 10px;
+   padding: 10px;
 }
 </pre>
 </div></div>

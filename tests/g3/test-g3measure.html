@@ -64,7 +64,7 @@
    <legend>Load library</legend>
 <label class="label" for="dGPer">g3measure</label><input id="dGPer" value="../../g3/g3measure.js" type="checkbox"><br></fieldset>
 </form><p><span><label class="label" for="boardHeights">Equal board heights:</label><input id="boardHeights" type="checkbox"></span></p><div id="boardWrapper">
-<form class="height" id="blackboard">
+<form class="" id="blackboard">
 <fieldset>
    <legend><b>Blackboard</b></legend>
    <label class="label" for="title">Tab title:</label><input id="title" size="40" type="text"><br>
@@ -72,7 +72,7 @@
    <input value="Execute!" type="button"><input disabled="" value="Save" type="button"><input value="Save to a new tab" type="button"><input value="Clear" type="button"><br>
 </fieldset>
 </form>
-<form class="height" id="console">
+<form class="" id="console">
 <fieldset>
    <legend><b>Console</b></legend>
    <div class="data"><pre></pre></div>
@@ -88,7 +88,7 @@
    </div>
 </fieldset>
 </form><hr><p><span style="padding: 0.4em 0.8em; color: #003380; background-color: #66a3ff;">Load any tab to blackboard</span><span><label class="label" for="panelHeights">Equal panel heights:</label><input id="panelHeights" type="checkbox"></span></p><div id="tabbedDataWrapper">
-<div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title enabled">g3measure</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window</div><div class="close">X</div></div><div class="tabBar"><div class="tab">window.screen</div><div class="close">X</div></div><div class="tabBar"><div class="tab">viewport</div><div class="close">X</div></div><div class="tabBar"><div class="tab">relative element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">absolute element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">chain methods</div><div class="close">X</div></div><div class="tabBar"><div class="tab">arbitrary order in methods</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//window sizes from different methods
+<div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title enabled">g3measure</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window</div><div class="close">X</div></div><div class="tabBar"><div class="tab">window.screen</div><div class="close">X</div></div><div class="tabBar"><div class="tab">document</div><div class="close">X</div></div><div class="tabBar"><div class="tab">viewport</div><div class="close">X</div></div><div class="tabBar"><div class="tab">relative element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">absolute element</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//window sizes from different methods
 //load frame: test-g3measure-stub1.html
 
 var framewin = $('#stub iframe').get(0).contentWindow;
@@ -101,7 +101,8 @@ console.log('jquery width='+$(framewin).width()+', accepted as viewport');
 console.log('-------height-------');
 console.log('js outerHeight='+framewin.outerHeight+', dropped (viewport? document?)');
 console.log('js innerHeight='+framewin.innerHeight+', dropped (viewport? document?)');
-console.log('jquery height='+$(framewin).height()+', accepted as viewport');</pre></div><div class="data"><pre>//window sizes from different methods
+console.log('jquery height='+$(framewin).height()+', accepted as viewport');
+</pre></div><div class="data"><pre>//window sizes from different methods
 //load frame: test-g3measure-stub1.html
 
 var framewin = $('#stub iframe').get(0).contentWindow.screen;
@@ -115,7 +116,22 @@ console.log('js height='+framewin.height);
 console.log('js availHeight='+framewin.availHeight);
 
 console.log('-------g3.measure-------');
-console.log(g3.measure('screen', framewin));</pre></div><div class="data"><pre>//viewport from different methods
+console.log(g3.measure('screen', framewin));</pre></div>
+<div class="data"><pre>//document from different methods
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+
+console.log('-------width-------');
+console.log('jquery document.width='+$(framewin.document).width());
+
+console.log('-------height-------');
+console.log('jquery document.height='+$(framewin.document).height());
+
+console.log('-------g3.measure-------');
+console.log(g3.measure('document', framewin));
+</pre></div>
+<div class="data"><pre>//viewport from different methods
 //load frame: test-g3measure-stub1.html
 
 var framewin = $('#stub iframe').get(0).contentWindow;
@@ -166,24 +182,22 @@ console.log('-------g3.measure-------');
 var measure = g3.measure(el, framewin);
 console.log(measure);
 
-console.log('--size--');
-console.log(measure.size());
+console.log('--intersect() in viewport--');
+console.log(measure.intersect());
 
-console.log('--position--');
-console.log(measure.position());
-
-console.log('--in viewport--');
-console.log(measure.visible());
+console.log('--difference() in viewport--');
+console.log(measure.difference());
 
 console.log('--deactivate getBoundingClientRect()--');
 var rect = el.getBoundingClientRect;
 el.getBoundingClientRect = null;
+measure = g3.measure(el, framewin);
 
-console.log('--position--');
-console.log(measure.position());
+console.log('--intersect() in viewport--');
+console.log(measure.intersect());
 
-console.log('--in viewport--');
-console.log(measure.visible());
+console.log('--difference() in viewport--');
+console.log(measure.difference());
 
 //restore
 el.getBoundingClientRect = rect;
@@ -200,7 +214,7 @@ console.log('jquery outerWidth()='+$(el).outerWidth()+' (border+padding+content)
 console.log('jquery innerWidth()='+$(el).innerWidth()+' (padding+content)');
 console.log('jquery width()='+$(el).width()+' (content)');
 console.log('jquery css()='+$(el).css('width')+' (content)');
-console.log('jquery offset()= (document)');
+console.log('jquery offset()=');
 console.log($(el).offset());
 try{
 console.log('width getComputedStyle()='+framewin.getComputedStyle(el).getPropertyValue('width')+' (content)');
@@ -225,58 +239,27 @@ console.log('-------g3.measure-------');
 var measure = g3.measure(el, framewin);
 console.log(measure);
 
-console.log('--size--');
-console.log(measure.size());
+console.log('--intersect() in viewport--');
+console.log(measure.intersect());
 
-console.log('--position--');
-console.log(measure.position());
-
-console.log('--in viewport--');
-console.log(measure.visible());
+console.log('--difference() in viewport--');
+console.log(measure.difference());
 
 console.log('--deactivate getBoundingClientRect()--');
 var rect = el.getBoundingClientRect;
 el.getBoundingClientRect = null;
+measure = g3.measure(el, framewin);
 
-console.log('--position--');
-console.log(measure.position());
+console.log('--intersect() in viewport--');
+console.log(measure.intersect());
 
-console.log('--in viewport--');
-console.log(measure.visible());
+console.log('--difference() in viewport--');
+console.log(measure.difference());
 
 //restore
 el.getBoundingClientRect = rect;
-</pre></div><div class="data"><pre>//element sizes from different methods
-//load frame: test-g3measure-stub1.html
-
-var framewin = $('#stub iframe').get(0).contentWindow;
-var el = $('#absolute', framewin.document).get(0);
-
-console.log('-------g3.measure-------');
-var measure = g3.measure(el, framewin).size().position();
-console.log(measure);
-
-console.log('--in viewport--');
-console.log(measure.visible());
-</pre></div><div class="data"><pre>//element sizes from different methods
-//load frame: test-g3measure-stub1.html
-
-var framewin = $('#stub iframe').get(0).contentWindow;
-var el = $('#absolute', framewin.document).get(0);
-
-console.log('-------g3.measure-------');
-var measure = g3.measure(el, framewin);
-console.log(measure);
-
-console.log('--position--');
-console.log(measure.position());
-
-console.log('--size--');
-console.log(measure.size());
-
-console.log('--in viewport--');
-console.log(measure.visible());
-</pre></div></div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">width-height-left-top</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window, body, document.documentElement</div><div class="close">X</div></div><div class="tabBar"><div class="tab">element</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//width-height-left-top of
+</pre></div>
+</div></div></div><div class="gridTabbedData"><div class="tabbedData"><div class="titleBar"><p class="title">width-height-left-top</p><p class="load">Load tab</p></div><div class="tabs"><div class="tabBar"><div class="tab">window, body, document.documentElement</div><div class="close">X</div></div><div class="tabBar"><div class="tab">relative element</div><div class="close">X</div></div><div class="tabBar"><div class="tab">absolute element</div><div class="close">X</div></div></div><div class="tabs"><div class="data"><pre>//width-height-left-top of
 //window, body, document.documentElement
 //load frame: test-g3measure-stub1.html
 
@@ -317,11 +300,35 @@ console.log('document.documentElement offsetTop='+framewin.document.documentElem
 console.log('document.documentElement scrollTop='+framewin.document.documentElement.scrollTop);
 console.log('document.documentElement clientTop='+framewin.document.documentElement.clientTop);
 
-</pre></div><div class="data"><pre>//width-height-left-top of element
+</pre></div><div class="data"><pre>//width-height-left-top of relative element
 //load frame: test-g3measure-stub1.html
 
 var framewin = $('#stub iframe').get(0).contentWindow;
 var el = $('#relative', framewin.document).get(0);
+//console.log(el);
+
+console.log('-------width-------');
+console.log('offsetWidth='+el.offsetWidth);
+console.log('scrollWidth='+el.scrollWidth);console.log('clientWidth='+el.clientWidth);
+
+console.log('-------height-------');
+console.log('offsetHeight='+el.offsetHeight);
+console.log('scrollHeight='+el.scrollHeight);console.log('clientHeight='+el.clientHeight);
+
+console.log('-------left-------');
+console.log('offsetLeft='+el.offsetLeft);
+console.log('scrollLeft='+el.scrollLeft);
+console.log('scrollLeftMax='+el.scrollLeftMax);console.log('clientLeft='+el.clientLeft);
+
+console.log('-------top-------');
+console.log('offsetTop='+el.offsetTop);
+console.log('scrollTop='+el.scrollTop);
+console.log('scrollTopMax='+el.scrollTopMax);console.log('clientTop='+el.clientTop);
+</pre></div><div class="data"><pre>//width-height-left-top of absolute element
+//load frame: test-g3measure-stub1.html
+
+var framewin = $('#stub iframe').get(0).contentWindow;
+var el = $('#absolute', framewin.document).get(0);
 //console.log(el);
 
 console.log('-------width-------');
