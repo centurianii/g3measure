@@ -42,7 +42,7 @@ g3.utils.type = (typeof g3.utils.type === 'function')? g3.utils.type : function 
  * - 'document': {'width': value, 'height': value}
  * - 'string': {'value': value, 'unit': value} parses css values extracting 
  *             the number from the unit part. If there is not a unit, it uses 
- *             'px' by default.
+ *             'px' by default. If number can't be found, returns null.
  * - node reference: returns these values on built 
  *      {'outerWidth': value, 'innerWidth': value, 'outerHeight': value, 
  *       'innerHeight': value, 'width': value, 'height': value, 'left': value, 
@@ -106,13 +106,11 @@ g3.utils.type = (typeof g3.utils.type === 'function')? g3.utils.type : function 
             'innerWidth': innerWidth,
             'outerHeight': outerHeight,
             'innerHeight': innerHeight,
-            //visible in viewport, returns true|false|string
-            //visible: function(){return _visible.call(this, win);},
             //intersection with viewport, returns true|false|object
             //where object={'viewLeft': left, 'viewTop': top, 'width': width, 'height': height}
             //includes border + padding + content
             intersect: function(){return _intersect.call(this, win);},
-            //difference with viewport, returns true|false|object
+            //difference with viewport, returns false|object
             //where object={'left': value, 'top': value, 'right': value, 'bottom': value} 
             //excluded area includes element's border + padding + content
             difference: function(){return _difference.call(this, win);}
@@ -289,6 +287,8 @@ g3.utils.type = (typeof g3.utils.type === 'function')? g3.utils.type : function 
          
          if(visible === false)
             return false;
+         if(visible === true)
+            visible = 'top right bottom left';
          //left
          if(visible.indexOf('left') >= 0)
             left = this.viewLeft;
